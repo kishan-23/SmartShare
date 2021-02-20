@@ -1,0 +1,8 @@
+.bodybg{
+    /*-fx-background-image: url('../Images/orange.jpg');*/
+    -fx-background-color:white;
+}
+
+.aboutBtn{
+    -fx-border-radius: 10px;
+}

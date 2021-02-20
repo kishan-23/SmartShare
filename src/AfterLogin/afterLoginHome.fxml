@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="400.0" style="-fx-background-color: #93385FFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AfterLogin.AfterLoginHome">
+   <children>
+      <Label alignment="CENTER" layoutX="90.0" layoutY="40.0" prefHeight="54.0" prefWidth="220.0" text="Hello User" textFill="#ffa4df">
+         <font>
+            <Font name="Harrington" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="29.0" layoutY="146.0" prefHeight="32.0" prefWidth="201.0" text="Logged in successfully as " textFill="#82c5f5">
+         <font>
+            <Font size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="idLabel" layoutX="231.0" layoutY="146.0" prefHeight="32.0" prefWidth="145.0" textFill="#3d089e">
+         <font>
+            <Font name="Consolas" size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="244.0" prefHeight="142.0" prefWidth="306.0" text="Now Enjoy Sharing infinitely and smartly..." textAlignment="CENTER" textFill="#f1ff83" wrapText="true">
+         <font>
+            <Font name="Harrington" size="32.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

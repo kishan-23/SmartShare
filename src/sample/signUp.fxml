@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="430.0" prefWidth="400.0" style="-fx-background-color: #4F3466FF; -fx-border-color: #000; -fx-border-width: 2px;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.SignUp">
+   <children>
+      <Label layoutX="123.0" layoutY="6.0" prefHeight="38.0" prefWidth="154.0" text="User Registration" textFill="#ff7b7b" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="71.0" layoutY="52.0" prefHeight="19.0" prefWidth="102.0" text="Enter your Name :" textFill="#f2f2ee" />
+      <Label layoutX="70.0" layoutY="106.0" text="Enter your E-mail :" textFill="#eff0e8" />
+      <Label layoutX="72.0" layoutY="155.0" text="Enter User ID of your choice :" textFill="#e5e2e2" />
+      <Label layoutX="71.0" layoutY="209.0" text="Create Password :" textFill="#ede6e6" />
+      <Label layoutX="71.0" layoutY="265.0" text="Confirm Password :" textFill="#ede6e6" />
+      <Button layoutX="173.0" layoutY="337.0" mnemonicParsing="false" style="-fx-background-color: #02c0f1;" text="Submit">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor></Button>
+      <Label fx:id="msgLabel" alignment="CENTER" layoutX="27.0" layoutY="377.0" prefHeight="38.0" prefWidth="346.0" textFill="#f20a0a">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameField" layoutX="72.0" layoutY="71.0" prefHeight="26.0" prefWidth="203.0" style="-fx-background-color: none;" />
+      <TextField fx:id="emailField" layoutX="72.0" layoutY="124.0" prefHeight="26.0" prefWidth="203.0" style="-fx-background-color: none;" />
+      <TextField fx:id="idField" layoutX="72.0" layoutY="173.0" prefHeight="26.0" prefWidth="203.0" style="-fx-background-color: none;" />
+      <PasswordField fx:id="passField" layoutX="71.0" layoutY="227.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: none;" />
+      <PasswordField fx:id="cnfPassField" layoutX="69.0" layoutY="288.0" prefHeight="26.0" prefWidth="210.0" style="-fx-background-color: none;" />
+      <Line endX="100.0" layoutX="177.0" layoutY="97.0" startX="-105.00001525878906" startY="0.4000091552734375" stroke="#0cdcf5" />
+      <Line endX="100.0" layoutX="177.0" layoutY="150.0" startX="-105.00001525878906" startY="0.4000091552734375" stroke="#0cdcf5" />
+      <Line endX="101.20001220703125" endY="-0.5999908447265625" layoutX="174.0" layoutY="200.0" startX="-102.00001525878906" startY="-1.52587890625E-5" stroke="#0cdcf5" />
+      <Line endX="105.4000244140625" endY="0.4000091552734375" layoutX="174.0" layoutY="253.0" startX="-105.00001525878906" startY="0.4000091552734375" stroke="#0cdcf5" />
+      <Line endX="108.4000244140625" endY="0.4000244140625" layoutX="171.0" layoutY="314.0" startX="-102.00001525878906" startY="-1.52587890625E-5" stroke="#0cdcf5" />
+   </children>
+</AnchorPane>

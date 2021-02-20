@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="430.0" prefWidth="400.0" style="-fx-background-color: #361101;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.About">
+   <children>
+      <Label layoutX="143.0" layoutY="20.0" prefHeight="42.0" prefWidth="113.0" text="Developed by :" textFill="WHITE">
+         <font>
+            <Font name="Gabriola" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="112.0" layoutY="62.0" prefHeight="54.0" prefWidth="175.0" text="incomprehensive dev" textFill="#ff2323">
+         <font>
+            <Font name="Harrington" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="166.0" layoutY="130.0" prefHeight="42.0" prefWidth="66.0" text="Contact:" textFill="WHITE">
+         <font>
+            <Font name="Gabriola" size="24.0" />
+         </font>
+      </Label>
+      <Hyperlink alignment="CENTER" layoutX="142.0" layoutY="194.0" prefHeight="26.0" prefWidth="114.0" text="facebook">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink alignment="CENTER" layoutX="142.0" layoutY="229.0" prefHeight="26.0" prefWidth="114.0" text="instagram">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink alignment="CENTER" layoutX="142.0" layoutY="271.0" prefHeight="26.0" prefWidth="114.0" text="github">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Hyperlink>
+      <Hyperlink alignment="CENTER" layoutX="156.0" layoutY="311.0" prefHeight="42.0" prefWidth="88.0" text="linkedin">
+         <font>
+            <Font size="21.0" />
+         </font>
+      </Hyperlink>
+   </children>
+</AnchorPane>

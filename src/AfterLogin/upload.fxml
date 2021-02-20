@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="400.0" style="-fx-background-color: #1C1C1BFF;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AfterLogin.Upload">
+   <children>
+      <Label layoutX="144.0" layoutY="14.0" prefHeight="46.0" prefWidth="110.0" text="UPLOAD" textFill="#ce4a7e">
+         <font>
+            <Font name="Lucida Bright Demibold" size="23.0" />
+         </font>
+      </Label>
+      <Label layoutX="14.0" layoutY="76.0" prefHeight="22.0" prefWidth="70.0" text="File Name:" textFill="#ce4a7e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="219.0" layoutY="76.0" prefHeight="21.0" prefWidth="60.0" text="File Path:" textFill="#ce4a7e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameField" layoutX="9.0" layoutY="98.0" prefHeight="26.0" prefWidth="174.0" promptText="File name (with extension)" style="-fx-background-color: none; -fx-text-fill: #fff;" />
+      <TextField fx:id="pathField" layoutX="214.0" layoutY="98.0" prefHeight="26.0" prefWidth="162.0" promptText="Path of file to upload" style="-fx-background-color: none; -fx-text-fill: #fff;" />
+      <Button fx:id="browseBtn" layoutX="174.0" layoutY="133.0" mnemonicParsing="false" onAction="#browseBtnAction" prefHeight="30.0" prefWidth="70.0" style="-fx-border-width: 2px; -fx-border-color: golden; -fx-background-color: #000;" text="Browse" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
+      <Label layoutX="14.0" layoutY="182.0" prefHeight="26.0" prefWidth="194.0" text="Download available upto date:" textFill="#ce4a7e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <DatePicker fx:id="dateField" layoutX="208.0" layoutY="182.0" promptText="Download availavility date" style="-fx-background-color: none;" />
+      <Label layoutX="89.0" layoutY="228.0" prefHeight="26.0" prefWidth="110.0" text="Max. Downloads:" textFill="#ce4a7e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextField fx:id="maxDownloadField" layoutX="209.0" layoutY="228.0" prefHeight="26.0" prefWidth="174.0" promptText="Maximum allowed downloads" style="-fx-background-color: none; -fx-text-fill: #fff;" />
+      <Label layoutX="14.0" layoutY="274.0" prefHeight="30.0" prefWidth="82.0" text="Comments:" textFill="#ce4a7e">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="commentArea" layoutX="108.0" layoutY="274.0" prefHeight="38.0" prefWidth="278.0" promptText="Enter some specifications of file (if any)" style="-fx-background-color: none;" wrapText="true" />
+      <Button fx:id="uploadBtn" layoutX="167.0" layoutY="322.0" mnemonicParsing="false" onAction="#uploadBtnAction" prefHeight="34.0" prefWidth="82.0" style="-fx-background-color: #000; -fx-border-color: #000; -fx-border-width: 2px; -fx-border-radius: px;" text="UPLOAD" textFill="WHITE">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+      <Label fx:id="msgLabel" alignment="CENTER" layoutX="5.0" layoutY="361.0" prefHeight="54.0" prefWidth="386.0" text="This is a sample message of two lines" textFill="#c8ff00" wrapText="true">
+         <font>
+            <Font name="Century Gothic" size="12.0" />
+         </font>
+      </Label>
+      <Line endX="68.4000244140625" endY="7.62939453125E-6" layoutX="115.0" layoutY="124.0" startX="-100.0" stroke="#ce4a7e" />
+      <Line endX="68.4000244140625" endY="7.62939453125E-6" layoutX="319.0" layoutY="124.0" startX="-100.0" stroke="#ce4a7e" />
+      <Line endX="68.4000244140625" endY="7.62939453125E-6" layoutX="311.0" layoutY="254.0" startX="-100.0" stroke="#ce4a7e" />
+   </children>
+</AnchorPane>
