@@ -3,8 +3,6 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -13,7 +11,7 @@ import java.io.IOException;
 
 public class Controller {
 
-    BackEnd.Client client;
+    ClientBackend.Client client;
 
     @FXML
     BorderPane mainPane;

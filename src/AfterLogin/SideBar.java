@@ -9,14 +9,24 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.Socket;
 
 public class SideBar {
-    public @FXML
+    @FXML
     BorderPane mainPane;
     @FXML
     Button logoutBtn;
     @FXML
     BorderPane sidePane;
+    Socket socket;
+
+    public void setSocket(Socket s) {
+        this.socket = s;
+    }
+
+    public void setMainPane(BorderPane pane){
+        this.mainPane = pane;
+    }
 
     public void uploadBtnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./upload.fxml"));

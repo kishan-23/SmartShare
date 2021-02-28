@@ -21,7 +21,7 @@
       <Label layoutX="72.0" layoutY="155.0" text="Enter User ID of your choice :" textFill="#e5e2e2" />
       <Label layoutX="71.0" layoutY="209.0" text="Create Password :" textFill="#ede6e6" />
       <Label layoutX="71.0" layoutY="265.0" text="Confirm Password :" textFill="#ede6e6" />
-      <Button layoutX="173.0" layoutY="337.0" mnemonicParsing="false" style="-fx-background-color: #02c0f1;" text="Submit">
+      <Button fx:id="submitBtn" layoutX="173.0" layoutY="337.0" mnemonicParsing="false" onAction="#submitAction" style="-fx-background-color: #02c0f1;" text="Submit">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>

@@ -12,7 +12,7 @@ public class Server {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
         try {
-            //Database
+            //Database connection
             Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection("jdbc:mysql://localhost/smartshare", "root", "");
             System.out.println("..Database connection established..");
@@ -27,9 +27,9 @@ public class Server {
             System.out.println("Waiting for client..");
             Socket s = ss.accept();
             System.out.println("User.Client Arrived :)");
-            //UserHandler handler = new UserHandler(s,con);
-            //Thread thread = new Thread(handler);
-            //thread.start();
+            LoginSignUp handle = new LoginSignUp(s,con);
+            Thread thread = new Thread(handle);
+            thread.start();
         }
     }
 }

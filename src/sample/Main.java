@@ -16,7 +16,7 @@ public class Main extends Application {
         primaryStage.setScene(new Scene(root, 600, 450));
         primaryStage.setResizable(false);
         Controller controller = loader.getController();
-        controller.client = new BackEnd.Client();
+        controller.client = new ClientBackend.Client();
         primaryStage.show();
     }
 
