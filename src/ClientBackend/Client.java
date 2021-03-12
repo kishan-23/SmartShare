@@ -26,13 +26,10 @@ public class Client {
         dout.flush();
         dout.writeUTF(id);
         dout.flush();
-        //if (!din.readBoolean()) return false;
         dout.writeUTF(email);
         dout.flush();
         dout.writeUTF(pass);
         dout.flush();
-        /*String msg = din.readUTF();
-        System.out.println(msg);*/
         boolean b = din.readBoolean();
         return b;
     }

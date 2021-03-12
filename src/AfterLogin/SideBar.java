@@ -31,12 +31,16 @@ public class SideBar {
     public void uploadBtnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./upload.fxml"));
         AnchorPane pn = loader.load();
+        Upload u = loader.getController();
+        u.setSocket(socket);
         mainPane.setCenter(pn);
     }
 
     public void downloadBtnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./download.fxml"));
         AnchorPane pn = loader.load();
+        Download d = loader.getController();
+        d.setSocket(socket);
         mainPane.setCenter(pn);
     }
 

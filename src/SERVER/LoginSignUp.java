@@ -126,6 +126,9 @@ public class LoginSignUp implements Runnable{
                     boolean result = validateLogin(con,userId,pass);
                     dout.writeBoolean(result);
                     dout.flush();
+                    UserHandler usr = new UserHandler(s,con,user_no);
+                    usr.run();
+                    break;
                 }
 
                 //For new user Registration

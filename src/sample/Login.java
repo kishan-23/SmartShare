@@ -53,7 +53,6 @@ public class Login {
 
         else{
             msgLabel.setText("Wrong UserID or Password");
-            //return;
         }
 
 

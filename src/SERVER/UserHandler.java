@@ -5,10 +5,12 @@ import java.io.*;
 import java.net.Socket;
 import java.sql.*;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
-public class UserHandler implements Runnable {
+public class UserHandler {
     Socket s;
     Connection con;
     DataInputStream din;
@@ -18,36 +20,44 @@ public class UserHandler implements Runnable {
     String user_name;
     String mail;
 
-    public UserHandler (Socket s, Connection con) throws IOException, SQLException {
+    public UserHandler (Socket s, Connection con, int user_no) throws IOException, SQLException {
         this.con = con;
         this.s = s;
         din = new DataInputStream(s.getInputStream());
         dout = new DataOutputStream(s.getOutputStream());
-
+        this.user_no=user_no;
     }
 
-    public void upload() throws IOException, SQLException {
+    public void upload() throws IOException, SQLException, ClassNotFoundException {
         String name, path, comment, query;
-        Date dt = new Date();
-        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy#HH:mm:ss");
-        String key = ""+user_no+"@"+formatter.format(dt);
-        java.sql.Date sqldate = new java.sql.Date(dt.getTime());
-        Time sqlTime = new Time(dt.getTime());
-        LocalDateTime now = LocalDateTime.now();
+        //Date dt = new Date();
+        //SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy#HH:mm:ss");
+        //String key = ""+user_no+"@"+formatter.format(dt);
+        //
+        //Time sqlTime = new Time(dt.getTime());
+        //LocalDateTime now = LocalDateTime.now();
         name = din.readUTF();
+        int maxd = din.readInt();
+        comment=din.readUTF();
+        String dt = din.readUTF();
+        System.out.println(dt);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate date = LocalDate.parse(dt,formatter);
+        //LocalDate date = LocalDate.now();
+        System.out.println(date);
         int i=0;
-        path = "C:\\Users\\Kishan Verma\\MyServer\\@"+i+name+"\\";
+        path = "C:\\Users\\kishan\\MyServer\\@"+i+name+"\\";
         File f = new File(path);
         while(f.exists())
         {
             i++;
-            path = "C:\\Users\\Kishan Verma\\MyServer\\@"+i+name+"\\";
+            path = "C:\\Users\\kishan\\MyServer\\@"+i+name+"\\";
             f = new File(path);
         }
         FileOutputStream fout = new FileOutputStream(f);
-        int max_download = din.readInt();
-        long time = din.readLong();
-        comment = din.readUTF();
+        //int max_download = din.readInt();
+        //long time = din.readLong();
+        //comment = din.readUTF();
         byte[] buffer = new byte[10240];
         int length;
         while ((length = din.read(buffer)) > 0) {
@@ -57,28 +67,40 @@ public class UserHandler implements Runnable {
         }
         fout.close();
         System.out.println("i'm here out of loop");
+        //fout.close();
+        System.out.println("out");
+        /*ObjectInputStream oin = new ObjectInputStream(s.getInputStream());
+        LocalDate date=(LocalDate) oin.readObject();
+        oin.close();*/
 
-        query = "insert into fileinfo (fileName, filePath, uploadedOn, downloadsLeft, uploadedBy, availableUpto, fileKey, comments) "+"values (?,?,?,?,?,?,?,?,?)";
+        System.out.println("i'm here out of loop again");
+        java.sql.Date sqldate1 = java.sql.Date.valueOf(date);
+        java.sql.Date sqldate2 = java.sql.Date.valueOf(LocalDate.now());
+        SimpleDateFormat formatter2 = new SimpleDateFormat("dd/MM/yy#HH:mm:ss");
+        String key = ""+user_no+"@"+formatter2.format(new Date());
+
+        query = "insert into fileinfo (fileName, filePath, uploadedOn, downloadsLeft, uploadedBy, availableUpto, fileKey, comments) "+"values (?,?,?,?,?,?,?,?)";
         PreparedStatement ps = null;
         ps = con.prepareStatement(query);
         ps.setString(1,name);
         ps.setString(2,path);
-        ps.setDate(3,sqldate);
-        ps.setTime(4,sqlTime);
-        ps.setInt(5,max_download);
-        ps.setInt(6,user_no);
-        ps.setLong(7,time);
-        ps.setString(8,key);
-        ps.setString(9,comment);
+        ps.setDate(3,sqldate2);
+        ps.setInt(4,maxd);
+        ps.setInt(5,user_no);
+        ps.setDate(6,sqldate1);
+        //ps.setLong(7,time);
+        ps.setString(7,key);
+        ps.setString(8,comment);
         ps.execute();
         System.out.println("File added");
         dout.writeUTF(key);
+        dout.flush();
     }
 
     public void download () throws IOException, SQLException {
         String key = din.readUTF();
         String name;
-        java.util.Date jDate;
+        java.util.Date jDate,aDate;
         String fPath;
         int maxD;
         long timL;
@@ -91,10 +113,11 @@ public class UserHandler implements Runnable {
             fPath = res1.getString(1);
             maxD = res1.getInt(2);
             jDate = res1.getDate(3);
-            timL = res1.getLong(5);
-            name = res1.getString(6);
-            long diff = (new Date().getTime()-jDate.getTime())/60000;
-            if(diff>timL)
+            aDate = res1.getDate(4);
+            //timL = res1.getLong(5);
+            name = res1.getString(5);
+            //long diff = (new Date().getTime()-jDate.getTime())/60000;
+            if(aDate.compareTo(new Date())>0)
             {
                 dout.writeUTF("Time Limit for the download is exceeded.");
                 dout.flush();
@@ -229,7 +252,6 @@ public class UserHandler implements Runnable {
         }
     }
 
-    @Override
     public void run() {
 
             try {
@@ -252,10 +274,10 @@ public class UserHandler implements Runnable {
                 }
 
 
-            } catch (IOException | SQLException e) {
-                System.out.println("exception 2: " + e.getMessage());
+            } catch (IOException | SQLException | ClassNotFoundException e) {
+                System.out.println("exception in UserHandler.run() : " + e.getMessage());
                 e.printStackTrace();
-                ;
+                return;
             }
 
             try {

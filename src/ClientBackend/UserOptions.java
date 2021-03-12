@@ -1,9 +1,11 @@
 package ClientBackend;
 
-import java.io.DataInputStream;
-import java.io.DataOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class UserOptions {
     Socket socket;
@@ -14,5 +16,74 @@ public class UserOptions {
         this.socket = s;
         din = new DataInputStream(socket.getInputStream());
         dout = new DataOutputStream(socket.getOutputStream());
+    }
+
+    public String upload(File file, int maxd, LocalDate date, String com) throws IOException {
+        dout.writeUTF("U");
+        dout.flush();
+        String key;
+        dout.writeUTF(file.getName());
+        dout.flush();
+        dout.writeInt(maxd);
+        dout.flush();
+        dout.writeUTF(com);
+        dout.flush();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        String dt = date.format(formatter);
+        dout.writeUTF(dt);
+        dout.flush();
+        System.out.println(dt);
+        try {
+            FileInputStream fin = new FileInputStream(file);
+            byte[] buffer = new byte[10240];
+            int length;
+            while ((length = fin.read(buffer)) > 0) {
+                dout.write(buffer, 0, length);
+            }
+            dout.flush();
+            fin.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println("exception in file input stream: "+e.getMessage());
+        }
+        System.out.println("out");
+        key = din.readUTF();
+        return key;
+    }
+
+    public String download(String key, String path) throws IOException {
+        dout.writeUTF("D");
+        dout.flush();
+        dout.writeUTF(key);
+        dout.flush();
+        String msg= din.readUTF();
+        if(!msg.equals(new String("OK"))){
+            return msg;
+        }
+        String name = din.readUTF();
+        int i=0;
+        String pt=path+"/"+i+name;
+        File file = new File(pt);
+        while (file.exists()) {
+            pt=path+"/"+i+name;
+            file = new File(pt);
+            i++;
+        }
+        try{
+            FileOutputStream fout = new FileOutputStream(file);
+            byte[] buffer=new byte[1024];
+            int length;
+            while ((length = din.read(buffer)) > 0) {
+                fout.write(buffer, 0, length);
+                if(length<1024) break;
+            }
+            fout.close();
+        }
+        catch (Exception e) {
+            System.out.println("Exception in UserOptions.download()"+e.getMessage());
+        }
+
+        return "Downloaded Successfully";
     }
 }
