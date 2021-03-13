@@ -6,7 +6,6 @@ import java.net.Socket;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -30,12 +29,6 @@ public class UserHandler {
 
     public void upload() throws IOException, SQLException, ClassNotFoundException {
         String name, path, comment, query;
-        //Date dt = new Date();
-        //SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yy#HH:mm:ss");
-        //String key = ""+user_no+"@"+formatter.format(dt);
-        //
-        //Time sqlTime = new Time(dt.getTime());
-        //LocalDateTime now = LocalDateTime.now();
         name = din.readUTF();
         int maxd = din.readInt();
         comment=din.readUTF();
@@ -43,7 +36,6 @@ public class UserHandler {
         System.out.println(dt);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate date = LocalDate.parse(dt,formatter);
-        //LocalDate date = LocalDate.now();
         System.out.println(date);
         int i=0;
         path = "C:\\Users\\kishan\\MyServer\\@"+i+name+"\\";
@@ -55,23 +47,16 @@ public class UserHandler {
             f = new File(path);
         }
         FileOutputStream fout = new FileOutputStream(f);
-        //int max_download = din.readInt();
-        //long time = din.readLong();
-        //comment = din.readUTF();
+
         byte[] buffer = new byte[10240];
         int length;
         while ((length = din.read(buffer)) > 0) {
             fout.write(buffer, 0, length);
-            //System.out.println(""+length);
             if(length<10240) break;
         }
         fout.close();
         System.out.println("i'm here out of loop");
-        //fout.close();
         System.out.println("out");
-        /*ObjectInputStream oin = new ObjectInputStream(s.getInputStream());
-        LocalDate date=(LocalDate) oin.readObject();
-        oin.close();*/
 
         System.out.println("i'm here out of loop again");
         java.sql.Date sqldate1 = java.sql.Date.valueOf(date);
@@ -88,7 +73,6 @@ public class UserHandler {
         ps.setInt(4,maxd);
         ps.setInt(5,user_no);
         ps.setDate(6,sqldate1);
-        //ps.setLong(7,time);
         ps.setString(7,key);
         ps.setString(8,comment);
         ps.execute();
@@ -117,10 +101,11 @@ public class UserHandler {
             //timL = res1.getLong(5);
             name = res1.getString(5);
             //long diff = (new Date().getTime()-jDate.getTime())/60000;
-            if(aDate.compareTo(new Date())>0)
+            if(aDate.compareTo(new Date())<0)
             {
                 dout.writeUTF("Time Limit for the download is exceeded.");
                 dout.flush();
+                this.delf(key);
             }
             else{
                 maxD--;
@@ -128,6 +113,7 @@ public class UserHandler {
                 {
                     dout.writeUTF("Maximum number of downloads for this file is achieved.");
                     dout.flush();
+                    this.delf(key);
                 }
                 else{
                     dout.writeUTF("OK");
@@ -159,7 +145,7 @@ public class UserHandler {
     }
 
     public void history() throws SQLException, IOException {
-        String qu = "select fileName, uploadedOn, downloadsLeft, fileKey, availableUpto, comments from fileinfo where "+"uploadedBy = "+"(?)";
+        String qu = "select fileName, fileKey, downloadsLeft, availableUpto from fileinfo where "+"uploadedBy = "+"(?)";
         PreparedStatement ps = null;
         ResultSet rs =null;
         try{
@@ -179,29 +165,18 @@ public class UserHandler {
             String fname = rs.getString(1);
             dout.writeUTF(fname);
             dout.flush();
-            java.sql.Date dt = rs.getDate(2);
-            Time tm = rs.getTime(3);
-            dout.writeUTF(dt.toString());
+            dout.writeUTF(rs.getString(2));
             dout.flush();
-            dout.writeUTF(tm.toString());
+            dout.writeInt(rs.getInt(3));
             dout.flush();
-            dout.writeInt(rs.getInt(4));
-            dout.flush();
-            dout.writeUTF(rs.getString(5));
-            dout.flush();
-            dout.writeLong(rs.getLong(6));
-            dout.flush();
-            dout.writeUTF(rs.getString(7));
+            dout.writeUTF(rs.getDate(4).toString());
             dout.flush();
         }
         dout.writeBoolean(false);
         dout.flush();
-        int delch = din.readInt();
-        if(delch==1) this.delFile();
     }
 
-    public void delFile() throws IOException, SQLException {
-        String key = din.readUTF();
+    public String delf(String key) throws SQLException {
         String qu1 = "select uploadedBy, filePath from fileinfo where fileKey = "+"(?)";
         PreparedStatement ps1 = con.prepareStatement(qu1);
         ps1.setString(1,key);
@@ -222,24 +197,27 @@ public class UserHandler {
                 catch (Exception i)
                 {
                     System.out.println("file not on server folder."+i.getMessage());
+                    return "file not on server folder.";
                 }
                 PreparedStatement ps2 = con.prepareStatement(qu2);
                 ps2.setString(1,key);
                 ps2.executeUpdate();
-                dout.writeUTF("Successfully deleted.");
-                dout.flush();
+                return "Successfully deleted.";
             }
             else {
-                dout.writeUTF("This file doesn't belong to you.");
-                dout.flush();
+                return "This file doesn't belong to you.";
             }
         }
         else{
-            dout.writeUTF("no such file was found");
-            dout.flush();
+            return  "no such file was found";
         }
     }
 
+    public void delFile() throws IOException, SQLException {
+        String key = din.readUTF();
+        dout.writeUTF(delf(key));
+        dout.flush();
+    }
 
     public void logout()
     {
@@ -270,6 +248,9 @@ public class UserHandler {
                         this.history();
                     }
 
+                    else if(ch.equals(new String("DF"))) {
+                        this.delFile();
+                    }
                     ch = din.readUTF();
                 }
 

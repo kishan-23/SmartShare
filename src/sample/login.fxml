@@ -6,41 +6,46 @@
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="430.0" style="-fx-background-color: #4655d0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login">
+<AnchorPane prefHeight="435.0" prefWidth="489.0" style="-fx-background-color: #4655d0;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Login">
    <children>
-      <Label alignment="CENTER" layoutX="137.0" layoutY="24.0" prefHeight="38.0" prefWidth="155.0" text="Login Window">
+      <Label alignment="CENTER" layoutX="156.0" layoutY="14.0" prefHeight="38.0" prefWidth="155.0" text="Login Window">
          <font>
-            <Font name="SansSerif Regular" size="20.0" />
+            <Font name="SansSerif Bold" size="20.0" />
          </font>
       </Label>
-      <Label layoutX="100.0" layoutY="91.0" prefHeight="22.0" prefWidth="62.0" text="User ID:" textFill="WHITE">
+      <Label layoutX="203.0" layoutY="89.0" prefHeight="22.0" prefWidth="62.0" text="User ID:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <TextField fx:id="idField" layoutX="100.0" layoutY="113.0" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: none; -fx-border-width: 1px; -fx-border-color: white;">
+      <TextField fx:id="idField" layoutX="125.0" layoutY="112.0" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: none; -fx-border-width: 1px; -fx-border-color: white;">
          <font>
             <Font name="Consolas" size="14.0" />
          </font></TextField>
-      <Label layoutX="100.0" layoutY="183.0" prefHeight="22.0" prefWidth="74.0" text="Password:" textFill="WHITE">
+      <Label layoutX="197.0" layoutY="192.0" prefHeight="22.0" prefWidth="74.0" text="Password:" textFill="WHITE">
          <font>
             <Font size="14.0" />
          </font>
       </Label>
-      <PasswordField fx:id="passField" blendMode="ADD" layoutX="100.0" layoutY="205.0" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: none; -fx-border-color: white;" />
-      <Button fx:id="loginBtn" layoutX="165.0" layoutY="261.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: none; -fx-border-color: lime; -fx-border-radius: 20px;" text="Login" textFill="#6fff00">
+      <PasswordField fx:id="passField" blendMode="ADD" layoutX="125.0" layoutY="215.0" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: none; -fx-border-color: white;" />
+      <Button fx:id="loginBtn" layoutX="184.0" layoutY="286.0" mnemonicParsing="false" onAction="#loginAction" prefHeight="38.0" prefWidth="100.0" style="-fx-background-color: none; -fx-border-color: lime; -fx-border-radius: 20px;" text="Login" textFill="#6fff00">
          <font>
             <Font size="15.0" />
          </font>
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor></Button>
-      <Label fx:id="msgLabel" alignment="CENTER" layoutX="75.0" layoutY="312.0" prefHeight="54.0" prefWidth="280.0" textAlignment="CENTER" textFill="#f50909">
+      <Label fx:id="msgLabel" alignment="CENTER" layoutX="94.0" layoutY="354.0" prefHeight="54.0" prefWidth="280.0" textAlignment="CENTER" textFill="#f50909">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
+      <AnchorPane layoutX="399.0" prefHeight="438.0" prefWidth="90.0" style="-fx-background-color: #301728;" />
+      <AnchorPane layoutX="-8.0" prefHeight="438.0" prefWidth="90.0" style="-fx-background-color: #301728;" />
+      <Line endX="184.0" endY="7.62939453125E-6" layoutX="219.0" layoutY="61.0" startX="-136.59999084472656" startY="7.62939453125E-6" stroke="#301728" strokeWidth="3.0" />
+      <Line endX="184.0" endY="7.62939453125E-6" layoutX="220.0" layoutY="337.0" startX="-136.59999084472656" startY="7.62939453125E-6" stroke="#301728" strokeWidth="3.0" />
    </children>
 </AnchorPane>

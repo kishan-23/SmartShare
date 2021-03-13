@@ -9,20 +9,20 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="600.0" style="-fx-background-color: #301728FF;" styleClass="bodybg" stylesheets="@back.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="450.0" prefWidth="680.0" style="-fx-background-color: #301728;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <BorderPane fx:id="mainPane" layoutX="192.0" layoutY="10.0" prefHeight="430.0" prefWidth="400.0" style="-fx-background-color: #9F6B99FF;">
+      <BorderPane fx:id="mainPane" layoutX="194.0" layoutY="10.0" prefHeight="430.0" prefWidth="478.0" style="-fx-background-color: #301728FF #301728FF;">
          <center>
-            <Label prefHeight="199.0" prefWidth="354.0" text="Start sharing now, Smartly and Infinitely" textAlignment="CENTER" wrapText="true" BorderPane.alignment="CENTER">
+            <Label prefHeight="338.0" prefWidth="361.0" text="Start sharing now, Smartly and Infinitely" textAlignment="CENTER" textFill="#bf8181" wrapText="true" BorderPane.alignment="CENTER">
                <font>
-                  <Font name="Ink Free" size="40.0" />
+                  <Font name="Berlin Sans FB" size="45.0" />
                </font>
             </Label>
          </center>
       </BorderPane>
       <ImageView fitHeight="112.0" fitWidth="178.0" layoutX="8.0" layoutY="10.0">
          <image>
-            <Image url="@../Images/share2.jpg" />
+            <Image url="@../ClientBackend/smartShare.png" />
          </image>
       </ImageView>
       <BorderPane fx:id="sideBarPane" layoutX="8.0" layoutY="148.0" prefHeight="244.0" prefWidth="178.0">

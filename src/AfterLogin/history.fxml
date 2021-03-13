@@ -9,35 +9,34 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="400.0" style="-fx-background-color: #360101;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AfterLogin.History">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="430.0" prefWidth="466.0" style="-fx-background-color: #360101;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="AfterLogin.History">
    <children>
-      <TableView fx:id="dataTable" layoutX="7.0" layoutY="46.0" prefHeight="254.0" prefWidth="386.0" style="-fx-background-color: coral;">
+      <TableView fx:id="dataTable" layoutX="7.0" layoutY="44.0" prefHeight="254.0" prefWidth="450.0" style="-fx-background-color: coral;">
         <columns>
-          <TableColumn fx:id="nameRow" prefWidth="80.800048828125" text="File Name" />
-          <TableColumn fx:id="keyRow" prefWidth="119.199951171875" text="File Key" />
-            <TableColumn fx:id="downloadsRow" prefWidth="95.20001220703125" text="Downloads Left" />
-            <TableColumn fx:id="dateRow" prefWidth="88.0" text="Available upto" />
+          <TableColumn fx:id="nameRow" prefWidth="128.7999906539917" text="File Name" />
+          <TableColumn fx:id="keyRow" prefWidth="126.40000915527344" text="File Key" />
+            <TableColumn fx:id="downloadsRow" prefWidth="93.5999755859375" text="Downloads Left" />
+            <TableColumn fx:id="dateRow" prefWidth="98.4000244140625" text="Available upto" />
         </columns>
       </TableView>
-      <Label layoutX="158.0" layoutY="14.0" prefHeight="27.0" prefWidth="83.0" text="History" textFill="#d6d9ff">
+      <Label layoutX="199.0" layoutY="14.0" prefHeight="27.0" prefWidth="83.0" text="History" textFill="#d6d9ff">
          <font>
             <Font name="Century" size="23.0" />
          </font>
       </Label>
-      <Label alignment="CENTER" layoutX="94.0" layoutY="306.0" prefHeight="30.0" prefWidth="212.0" text="Want to Remove any File?" textFill="#38cdff">
+      <Label alignment="CENTER" layoutX="125.0" layoutY="305.0" prefHeight="30.0" prefWidth="212.0" text="Want to Remove any File?" textFill="#38cdff">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <TextField fx:id="keyField" alignment="CENTER" layoutX="85.0" layoutY="336.0" prefHeight="26.0" prefWidth="145.0" promptText="Enter the Key" style="-fx-background-color: none;" />
-      <Line endX="45.5999755859375" endY="0.399993896484375" layoutX="185.0" layoutY="362.0" startX="-100.0" stroke="#1beac8" />
-      <Button fx:id="removeBtn" layoutX="241.0" layoutY="337.0" mnemonicParsing="false" onAction="#removeBtnAction" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: red;" text="Remove">
+      <TextField fx:id="keyField" alignment="CENTER" layoutX="101.0" layoutY="336.0" prefHeight="26.0" prefWidth="145.0" promptText="Enter the Key" style="-fx-background-color: none;" />
+      <Line endX="45.5999755859375" endY="0.399993896484375" layoutX="201.0" layoutY="362.0" startX="-100.0" stroke="#1beac8" />
+      <Button fx:id="removeBtn" layoutX="260.0" layoutY="336.0" mnemonicParsing="false" onAction="#removeBtnAction" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: red;" text="Remove">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="msgLabel" alignment="CENTER" layoutX="58.0" layoutY="377.0" prefHeight="30.0" prefWidth="284.0" text="FIle Successfully Removed from server" textFill="#ff5954" wrapText="true">
+      <Label fx:id="msgLabel" alignment="CENTER" layoutX="89.0" layoutY="385.0" prefHeight="30.0" prefWidth="284.0" textFill="#ff5954" wrapText="true">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font>

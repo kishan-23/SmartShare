@@ -47,6 +47,9 @@ public class SideBar {
     public void historyBtnAction(ActionEvent actionEvent) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("./history.fxml"));
         AnchorPane pn = loader.load();
+        History h = loader.getController();
+        h.setSocket(socket);
+        h.display();
         mainPane.setCenter(pn);
     }
 

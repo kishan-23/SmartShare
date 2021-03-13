@@ -1,5 +1,8 @@
 package ClientBackend;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 import java.net.Socket;
 import java.text.SimpleDateFormat;
@@ -85,5 +88,30 @@ public class UserOptions {
         }
 
         return "Downloaded Successfully";
+    }
+
+    public ObservableList<FileModal> history() throws IOException {
+        dout.writeUTF("H");
+        dout.flush();
+        ObservableList<FileModal> fileList = FXCollections.observableArrayList();
+        while(din.readBoolean())
+        {
+            String name = din.readUTF();
+            String key = din.readUTF();
+            int downLeft = din.readInt();
+            String avlUpto = din.readUTF();
+            Integer i = Integer.valueOf(downLeft);
+            fileList.add(new FileModal(name,key,downLeft,avlUpto));
+        }
+        return fileList;
+    }
+
+    public String delFile(String key) throws IOException {
+        dout.writeUTF("DF");
+        dout.flush();
+        dout.writeUTF(key);
+        dout.flush();
+        String msg=din.readUTF();
+        return msg;
     }
 }

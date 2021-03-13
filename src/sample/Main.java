@@ -13,7 +13,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("sample.fxml"));
         Parent root = loader.load(); //FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Smart-Share");
-        primaryStage.setScene(new Scene(root, 600, 450));
+        primaryStage.setScene(new Scene(root, 680, 450));
         primaryStage.setResizable(false);
         Controller controller = loader.getController();
         controller.client = new ClientBackend.Client();
